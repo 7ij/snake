@@ -1,3 +1,7 @@
+/*
+    Author: Ashiqur Rahman Nayeem
+            MAT - 27, SUST,
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -82,13 +86,13 @@ void clearScreen()
 #define boardMaxRow 20
 #define boardMaxColumn 75
 
-int snakeBodyCellCount=20;
+int snakeBodyCellCount=3;
 int snakeBodyCell[maxSnakeBodyCellCount][2];
 int nextSnakeHeadCoordinate[2];
-char snakeCellcharachter='.';
+char snakeCellcharachter='o';
 char borderAboveAndBelowCharchater='*';
 char borderLeftAndRightCharchater='/';
-char foodCharachter='@';
+char foodCharachter='F';
 int startingRow=5,
     startingColumn=10;
 int score  =    0;
@@ -183,7 +187,7 @@ int isSelfBit()
 			return 1;
 	}
 	return 0;
-	
+
 }
 void drawSnakeBody()
 {
@@ -209,7 +213,7 @@ void drawSnakeBody()
     gotoxy(snakeBodyCell[snakeBodyCellCount-1][0], snakeBodyCell[snakeBodyCellCount-1][1]);
     printf("%c",  ' ');
 
-    
+
 }
 void debug()
 {
@@ -243,6 +247,12 @@ void drawBoard()
     drawSnakeBody();
     printScore();
 }
+void speed(int currentDirection, int i)
+{
+    if(currentDirection==DOWN || currentDirection == UP)
+        	Sleep(i*10);
+        Sleep(5*i);
+}
 int main()
 {
 	clearScreen();
@@ -265,9 +275,7 @@ int main()
 
         refreshSnakeCellCordinates();
         drawBoard();
-        if(currentDirection==DOWN || currentDirection == UP)
-        	Sleep(40);
-        Sleep(30);
+        speed(currentDirection, 5);
         previousSnakeDirection=currentDirection;
     }
   return 0;
