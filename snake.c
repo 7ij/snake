@@ -83,8 +83,8 @@ void clearScreen()
 #endif
 
 #define maxSnakeBodyCellCount 100
-#define boardMaxRow 20
-#define boardMaxColumn 75
+#define boardMaxRow 30
+#define boardMaxColumn 50
 
 int snakeBodyCellCount=3;
 int snakeBodyCell[maxSnakeBodyCellCount][2];
@@ -93,7 +93,7 @@ char snakeCellcharachter='o';
 char borderAboveAndBelowCharchater='*';
 char borderLeftAndRightCharchater='/';
 char foodCharachter='F';
-int startingRow=5,
+int startingRow=3,
     startingColumn=10;
 int score  =    0;
 void initSnake()
@@ -217,12 +217,12 @@ void drawSnakeBody()
 }
 void debug()
 {
-    gotoxy(22, 0);
+    gotoxy(boardMaxRow+1, 0);
     printf("%d, %d \n", nextSnakeHeadCoordinate[0], nextSnakeHeadCoordinate[1]);
 }
 void printScore()
 {
-    gotoxy(22, 0);
+    gotoxy(boardMaxRow+1, 0);
     printf("score: %d\n", score);
 }
 void drawBorder()
@@ -250,7 +250,7 @@ void drawBoard()
 void speed(int currentDirection, int i)
 {
     if(currentDirection==DOWN || currentDirection == UP)
-        	Sleep(i*10);
+        	Sleep(i*2.2);
         Sleep(5*i);
 }
 int main()
@@ -275,7 +275,7 @@ int main()
 
         refreshSnakeCellCordinates();
         drawBoard();
-        speed(currentDirection, 5);
+        speed(currentDirection, 2);
         previousSnakeDirection=currentDirection;
     }
   return 0;
