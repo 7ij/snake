@@ -86,7 +86,7 @@ void clearScreen()
 #define boardMaxRow 30
 #define boardMaxColumn 50
 
-int snakeBodyCellCount=3;
+int snakeBodyCellCount=10;
 int snakeBodyCell[maxSnakeBodyCellCount][2];
 int nextSnakeHeadCoordinate[2];
 char snakeCellcharachter='o';
@@ -249,9 +249,10 @@ void drawBoard()
 }
 void speed(int currentDirection, int i)
 {
-    if(currentDirection==DOWN || currentDirection == UP)
-        	Sleep(i*2.2);
-        Sleep(5*i);
+    if(currentDirection!=DOWN || currentDirection != UP)
+        	Sleep(150);
+	else
+        Sleep(50);
 }
 int main()
 {
